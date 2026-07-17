@@ -5,7 +5,8 @@ import { useState } from "react";
 
 const ExploreItems = ({ items }) => {
   const [sortOrder, setSortOrder] = useState("");
-  const PAGE_SIZE = 8; // however many you want to reveal per click
+  const PAGE_SIZE = 8;
+  const PAGE_Additon = 4; // however many you want to reveal per click
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
   const sortedItems = [...items].sort((a, b) => {
     if (sortOrder === "price_low_to_high") return a.price - b.price;
@@ -114,7 +115,7 @@ const ExploreItems = ({ items }) => {
           <button
             type="button"
             className="btn-main lead"
-            onClick={() => setVisibleCount((prev) => prev + PAGE_SIZE)}
+            onClick={() => setVisibleCount((prev) => prev + PAGE_Additon)}
           >
             Load more
           </button>
