@@ -1,32 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import SubHeader from "../images/subheader.jpg";
 import ExploreItems from "../components/explore/ExploreItems";
-import axios from "axios";
-import NFTSkeleton from "../components/home/NFTSkeleton";
-
-async function getExploreNFTs() {
-  try {
-    const response = await axios.get(
-      "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore",
-    );
-    return response.data;
-    // Data is already parsed and ready inside response.data
-  } catch (error) {
-    console.error("Request failed:", error.message);
-  }
-}
 
 const Explore = () => {
-  const [NFTData, setNFTData] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  useEffect(() => {
-    getExploreNFTs().then((data) => {
-      setTimeout(() => {
-        setNFTData(data);
-        setIsLoading(false);
-      });
-    }, 1000);
-  }, []);
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
@@ -52,21 +28,7 @@ const Explore = () => {
         <section aria-label="section">
           <div className="container">
             <div className="row">
-              {isLoading ? (
-                <div
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: "repeat(4, 1fr)",
-                    gap: 16,
-                  }}
-                >
-                  {Array.from({ length: 8 }).map((_, i) => (
-                    <NFTSkeleton key={i} />
-                  ))}
-                </div>
-              ) : (
-                <ExploreItems items={NFTData} />
-              )}
+              <ExploreItems />
             </div>
           </div>
         </section>
