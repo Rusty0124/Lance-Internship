@@ -21,9 +21,11 @@ const Explore = () => {
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     getExploreNFTs().then((data) => {
-      setNFTData(data);
-      setIsLoading(false);
-    });
+      setTimeout(() => {
+        setNFTData(data);
+        setIsLoading(false);
+      });
+    }, 1000);
   }, []);
   return (
     <div id="wrapper">
