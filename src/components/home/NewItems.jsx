@@ -1,9 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import NFTSkeleton from "./NFTSkeleton";
-import Countdown from "./Countdown";
 import NewItemCarousel from "./NewItemCarousel";
 
 async function getNFTs() {

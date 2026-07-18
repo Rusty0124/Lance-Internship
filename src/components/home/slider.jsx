@@ -14,7 +14,7 @@ export default function SimpleSlider({ items }) {
   };
   return (
     <Slider {...settings}>
-      {items.map(({ title, authorImage, nftImage }, index) => (
+      {items.map(({ title, authorImage, nftImage, authorId }, index) => (
         <div key={index} className="nft_coll">
           <div className="nft_wrap">
             <Link to="/item-details">
@@ -22,7 +22,7 @@ export default function SimpleSlider({ items }) {
             </Link>
           </div>
           <div className="nft_coll_pp">
-            <Link to="/author">
+            <Link to={`/author/${authorId}`}>
               <img className="lazy pp-coll" src={authorImage} alt="" />
             </Link>
             <i className="fa fa-check"></i>
