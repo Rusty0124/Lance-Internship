@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import NFTSkeleton from "./NFTSkeleton.jsx";
 import axios from "axios";
-import SimpleSlider from "./slider.jsx";
 import CustomArrows from "./HotCollectionsCarousel.jsx";
 
 async function getNFTs() {

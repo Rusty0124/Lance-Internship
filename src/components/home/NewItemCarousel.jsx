@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import Slider from "react-slick";
 import { Link } from "react-router-dom";
 import "./HotCollectionsCarousel.css";
@@ -92,12 +92,12 @@ function NewItemCarousel({ items }) {
   };
   return (
     <Slider {...settings}>
-      {items.map(({ title, authorImage, nftImage, expiryDate }, index) => (
+      {items.map(({ title, authorImage, nftImage, expiryDate, authorId }, index) => (
         <div key={index}>
           <div className="nft__item">
             <div className="author_list_pp">
               <Link
-                to="/author"
+                to={`/author/${authorId}`}
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
                 title="Creator: Monica Lucas"

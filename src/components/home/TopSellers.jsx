@@ -18,8 +18,14 @@ async function getTopSellers() {
 const TopSellers = () => {
   const [topSellers, settopSellers] = useState([]);
   useEffect(() => {
-    getTopSellers().then(settopSellers);
-  }, [topSellers]);
+    let cancelled = false;
+    getTopSellers().then((data) => {
+      if (!cancelled) settopSellers(data);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
   return (
     <section id="section-popular" className="pb-5">
       <div className="container">
@@ -36,7 +42,7 @@ const TopSellers = () => {
                 ({ id, authorName, authorImage, authorId, price }, index) => (
                   <li key={index}>
                     <div className="author_list_pp">
-                      <Link to="/author">
+                      <Link to={`/author/${authorId}`}>
                         <img
                           className="lazy pp-author"
                           src={authorImage}
@@ -46,7 +52,7 @@ const TopSellers = () => {
                       </Link>
                     </div>
                     <div className="author_list_info">
-                      <Link to="/author">{authorName}</Link>
+                      <Link to={`/author/${authorId}`}>{authorName}</Link>
                       <span>{price}</span>
                     </div>
                   </li>
