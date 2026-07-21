@@ -19,7 +19,7 @@ const AuthorItems = ({ author, isLoading }) => {
                       <NFTSkeleton key={i} />
                     ))}
                   </div>
-                ) : (author.nftCollection.map(({ title, price, likes, nftImage }, index) => (
+                ) : (author.nftCollection.map(({ title, price, likes, nftImage, nftId }, index) => (
             <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
               <div className="nft__item">
                 <div className="author_list_pp">
@@ -46,7 +46,7 @@ const AuthorItems = ({ author, isLoading }) => {
                       </div>
                     </div>
                   </div>
-                  <Link to="/item-details">
+                  <Link to={`/item-details/${nftId}`}>
                     <img
                       src={nftImage}
                       className="lazy nft__item_preview"
@@ -55,7 +55,7 @@ const AuthorItems = ({ author, isLoading }) => {
                   </Link>
                 </div>
                 <div className="nft__item_info">
-                  <Link to="/item-details">
+                  <Link to={`/item-details/${nftId}`}>
                     <h4>{title}</h4>
                   </Link>
                   <div className="nft__item_price">{price}</div>
