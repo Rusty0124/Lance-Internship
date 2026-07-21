@@ -89,10 +89,10 @@ function CustomArrows({ items }) {
   };
   return (
     <Slider {...settings}>
-      {items.map(({ title, authorImage, nftImage, authorId }, index) => (
+      {items.map(({ title, authorImage, nftImage, authorId, nftId }, index) => (
         <div key={index} className="nft_coll">
           <div className="nft_wrap">
-            <Link to="/item-details">
+            <Link to={`/item-details/${nftId}`}>
               <img src={nftImage} className="lazy img-fluid" alt="" />
             </Link>
           </div>
