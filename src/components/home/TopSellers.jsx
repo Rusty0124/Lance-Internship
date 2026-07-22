@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+import AOS from "aos";
 
 async function getTopSellers() {
   try {
@@ -26,6 +27,10 @@ const TopSellers = () => {
       cancelled = true;
     };
   }, []);
+
+  useEffect(() => {
+    if (topSellers.length > 0) AOS.refresh();
+  }, [topSellers]);
   return (
     <section id="section-popular" className="pb-5">
       <div className="container">
@@ -37,7 +42,7 @@ const TopSellers = () => {
             </div>
           </div>
           <div className="col-md-12">
-            <ol className="author_list">
+            <ol className="author_list" data-aos="fade-in">
               {topSellers.map(
                 ({ id, authorName, authorImage, authorId, price }, index) => (
                   <li key={index}>
