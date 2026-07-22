@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Countdown from "../home/Countdown";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import AOS from "aos";
 import NFTSkeleton from "../home/NFTSkeleton";
 
 async function getExploreNFTs(sortOrder) {
@@ -33,6 +34,10 @@ const ExploreItems = () => {
       setIsLoading(false);
     });
   }, [sortOrder]);
+
+  useEffect(() => {
+    if (!isLoading) AOS.refresh();
+  }, [isLoading]);
 
   return (
     <>
@@ -81,6 +86,9 @@ const ExploreItems = () => {
               index,
             ) => (
               <div
+                data-aos="fade-in"
+                data-aos-duration="1000"
+                data-aos-easing="ease-in-out"
                 key={index}
                 className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
                 style={{ display: "block", backgroundSize: "cover" }}
